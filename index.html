@@ -164,19 +164,19 @@
 
             /* ---------- gold coast horizon ---------- */
             .scene {
-                width: 100%;
-                margin: 0;
+                max-width: var(--col);
+                margin: 0 auto;
+                padding: 0 26px;
                 line-height: 0;
             }
             .scene canvas {
                 display: block;
                 width: 100%;
-                height: clamp(150px, 26vw, 230px);
+                height: clamp(140px, 22vw, 190px);
+                border-bottom: 1px solid var(--rule);
             }
             .scene-cap {
-                max-width: var(--col);
-                margin: 8px auto 0;
-                padding: 0 26px;
+                margin: 9px 0 0;
                 font-size: 11.5px;
                 letter-spacing: 0.04em;
                 color: var(--soft);
