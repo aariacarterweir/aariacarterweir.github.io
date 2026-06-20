@@ -217,6 +217,48 @@
             .links a .go { margin-left: auto; color: var(--accent); transition: transform 0.18s; }
             .links a:hover .go { transform: translate(3px, -3px); }
 
+            /* ---------- album header ---------- */
+            .album-header {
+                display: flex;
+                gap: 20px;
+                align-items: flex-start;
+                margin: 0 0 24px;
+            }
+            .album-art {
+                flex: 0 0 auto;
+                width: 88px;
+                height: 88px;
+                border-radius: 6px;
+                object-fit: cover;
+                box-shadow: 0 2px 12px #23211d18;
+            }
+            .album-info { flex: 1; min-width: 0; }
+            .album-title {
+                font-size: 17px;
+                font-weight: 600;
+                margin: 0 0 3px;
+                color: var(--ink);
+                letter-spacing: -0.01em;
+            }
+            .album-sub {
+                font-size: 13px;
+                color: var(--soft);
+                margin: 0 0 10px;
+            }
+            .album-sc {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                font-size: 12.5px;
+                color: var(--accent-ink);
+                border: 1px solid var(--accent);
+                border-radius: 20px;
+                padding: 4px 12px;
+                transition: background 0.18s, color 0.18s;
+            }
+            .album-sc:hover { background: var(--accent); color: var(--ground); }
+            .album-sc svg { width: 13px; height: 13px; }
+
             /* ---------- tracks (compact) ---------- */
             .tracks { display: flex; flex-direction: column; gap: 4px; }
             .track {
@@ -229,6 +271,17 @@
                 transition: background 0.18s;
             }
             .track:hover { background: var(--raised); }
+
+            .track-num {
+                flex: 0 0 auto;
+                width: 18px;
+                text-align: right;
+                font-size: 12px;
+                color: var(--soft);
+                font-variant-numeric: tabular-nums;
+            }
+            .track-num { display: flex; align-items: center; justify-content: flex-end; }
+            .track.is-playing .track-num { visibility: hidden; }
 
             .play {
                 flex: 0 0 auto;
@@ -337,20 +390,74 @@
 
             <section class="block">
                 <p class="label">things i've made</p>
+
+                <div class="album-header">
+                    <img class="album-art" src="assets/img/fake-cover.jpg" alt="Fake album cover" />
+                    <div class="album-info">
+                        <p class="album-title">Fake</p>
+                        <p class="album-sub">9 tracks · mixed &amp; created with AI</p>
+                        <a class="album-sc" href="https://soundcloud.com/aaria-carter-weir/sets/fake" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M1.175 12.225c-.051 0-.094.046-.101.1l-.233 2.154.233 2.105c.007.058.05.098.101.098.05 0 .09-.04.099-.098l.255-2.105-.27-2.154c-.009-.06-.05-.1-.1-.1zm1.49-.833c-.063 0-.115.055-.124.12l-.2 2.987.2 2.905c.009.065.061.112.124.112.065 0 .117-.047.124-.112l.225-2.905-.225-2.987c-.007-.065-.059-.12-.124-.12zm1.49.278c-.077 0-.14.065-.149.144l-.177 2.709.177 2.856c.009.08.072.14.149.14.078 0 .14-.06.15-.14l.2-2.856-.2-2.709c-.01-.079-.072-.144-.15-.144zm1.492-.624c-.09 0-.163.073-.172.165l-.156 3.333.156 2.807c.009.092.082.162.172.162.089 0 .162-.07.172-.162l.178-2.807-.178-3.333c-.01-.092-.083-.165-.172-.165zm1.49-.127c-.102 0-.185.083-.194.188l-.134 3.46.134 2.758c.009.105.092.185.194.185.1 0 .183-.08.193-.185l.152-2.758-.152-3.46c-.01-.105-.093-.188-.193-.188zm1.49-.39c-.115 0-.208.094-.217.211l-.113 3.85.113 2.709c.009.117.102.208.217.208.115 0 .208-.091.218-.208l.128-2.709-.128-3.85c-.01-.117-.103-.211-.218-.211zm1.49-.42c-.128 0-.231.104-.24.234l-.092 4.27.092 2.66c.009.13.112.23.24.23.128 0 .231-.1.24-.23l.104-2.66-.104-4.27c-.009-.13-.112-.234-.24-.234zm1.491.21c-.14 0-.254.115-.263.257l-.071 4.06.071 2.61c.009.142.123.255.263.255.14 0 .253-.113.263-.255l.08-2.61-.08-4.06c-.01-.142-.123-.257-.263-.257zm1.49-.747c-.153 0-.277.125-.286.28l-.05 4.807.05 2.562c.009.155.133.277.286.277.153 0 .277-.122.287-.277l.057-2.562-.057-4.807c-.01-.155-.134-.28-.287-.28zm1.49-.374c-.165 0-.298.135-.308.302l-.03 5.181.03 2.513c.01.167.143.3.308.3.165 0 .298-.133.308-.3l.033-2.513-.033-5.181c-.01-.167-.143-.302-.308-.302zm1.492.077c-.178 0-.322.146-.33.326l-.01 5.104.01 2.464c.008.18.152.324.33.324.178 0 .322-.144.33-.324l.012-2.464-.012-5.104c-.008-.18-.152-.326-.33-.326zm3.407-2.31c-.257 0-.505.05-.735.14C18.028 5.91 16.89 5 15.533 5c-.42 0-.82.09-1.18.248-.135.056-.17.113-.172.165v10.074c.002.055.04.1.09.11l6.64.001c.56 0 1.013-.455 1.013-1.017 0-.562-.453-1.017-1.013-1.017-.065 0-.127.007-.188.019.06-.21.092-.432.092-.661 0-1.39-1.118-2.517-2.498-2.517z"/></svg>
+                            listen on soundcloud ↗
+                        </a>
+                    </div>
+                </div>
+
                 <div class="tracks">
-                    <article class="track" data-src="assets/audio/chosen.mp3">
-                        <button class="play" type="button" aria-label="Play Chosen">
+                    <article class="track" data-src="assets/audio/still-waiting.mp3">
+                        <span class="track-num">1</span>
+                        <button class="play" type="button" aria-label="Play Still Waiting">
                             <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
                             <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z" /></svg>
                         </button>
-                        <div class="track-meta"><p class="track-title">chosen</p></div>
+                        <div class="track-meta"><p class="track-title">still waiting</p></div>
                         <div class="track-bottom">
                             <div class="scrub"><div class="scrub-fill"></div></div>
-                            <span class="time">0:00 / 3:12</span>
+                            <span class="time">–:––</span>
+                        </div>
+                    </article>
+
+                    <article class="track" data-src="assets/audio/on-call.mp3">
+                        <span class="track-num">2</span>
+                        <button class="play" type="button" aria-label="Play On Call">
+                            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+                            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z" /></svg>
+                        </button>
+                        <div class="track-meta"><p class="track-title">on call</p></div>
+                        <div class="track-bottom">
+                            <div class="scrub"><div class="scrub-fill"></div></div>
+                            <span class="time">–:––</span>
+                        </div>
+                    </article>
+
+                    <article class="track" data-src="assets/audio/hello-world.mp3">
+                        <span class="track-num">3</span>
+                        <button class="play" type="button" aria-label="Play Hello World">
+                            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+                            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z" /></svg>
+                        </button>
+                        <div class="track-meta"><p class="track-title">hello world</p></div>
+                        <div class="track-bottom">
+                            <div class="scrub"><div class="scrub-fill"></div></div>
+                            <span class="time">–:––</span>
+                        </div>
+                    </article>
+
+                    <article class="track" data-src="assets/audio/burn-rate.mp3">
+                        <span class="track-num">4</span>
+                        <button class="play" type="button" aria-label="Play Burn Rate">
+                            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+                            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z" /></svg>
+                        </button>
+                        <div class="track-meta"><p class="track-title">burn rate</p></div>
+                        <div class="track-bottom">
+                            <div class="scrub"><div class="scrub-fill"></div></div>
+                            <span class="time">–:––</span>
                         </div>
                     </article>
 
                     <article class="track" data-src="assets/audio/paper-crown.mp3">
+                        <span class="track-num">5</span>
                         <button class="play" type="button" aria-label="Play Paper Crown">
                             <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
                             <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z" /></svg>
@@ -358,11 +465,62 @@
                         <div class="track-meta"><p class="track-title">paper crown</p></div>
                         <div class="track-bottom">
                             <div class="scrub"><div class="scrub-fill"></div></div>
-                            <span class="time">0:00 / 2:55</span>
+                            <span class="time">–:––</span>
+                        </div>
+                    </article>
+
+                    <article class="track" data-src="assets/audio/bred-for-it.mp3">
+                        <span class="track-num">6</span>
+                        <button class="play" type="button" aria-label="Play Bred for It">
+                            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+                            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z" /></svg>
+                        </button>
+                        <div class="track-meta"><p class="track-title">bred for it</p></div>
+                        <div class="track-bottom">
+                            <div class="scrub"><div class="scrub-fill"></div></div>
+                            <span class="time">–:––</span>
+                        </div>
+                    </article>
+
+                    <article class="track" data-src="assets/audio/offline.mp3">
+                        <span class="track-num">7</span>
+                        <button class="play" type="button" aria-label="Play Offline">
+                            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+                            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z" /></svg>
+                        </button>
+                        <div class="track-meta"><p class="track-title">offline</p></div>
+                        <div class="track-bottom">
+                            <div class="scrub"><div class="scrub-fill"></div></div>
+                            <span class="time">–:––</span>
+                        </div>
+                    </article>
+
+                    <article class="track" data-src="assets/audio/astonishing.mp3">
+                        <span class="track-num">8</span>
+                        <button class="play" type="button" aria-label="Play Astonishing">
+                            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+                            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z" /></svg>
+                        </button>
+                        <div class="track-meta"><p class="track-title">astonishing</p></div>
+                        <div class="track-bottom">
+                            <div class="scrub"><div class="scrub-fill"></div></div>
+                            <span class="time">–:––</span>
+                        </div>
+                    </article>
+
+                    <article class="track" data-src="assets/audio/chosen.mp3">
+                        <span class="track-num">9</span>
+                        <button class="play" type="button" aria-label="Play Chosen">
+                            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+                            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z" /></svg>
+                        </button>
+                        <div class="track-meta"><p class="track-title">chosen</p></div>
+                        <div class="track-bottom">
+                            <div class="scrub"><div class="scrub-fill"></div></div>
+                            <span class="time">–:––</span>
                         </div>
                     </article>
                 </div>
-                <p class="footnote">two songs, mixed &amp; created with AI.</p>
             </section>
 
             <footer>
