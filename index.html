@@ -1,57 +1,51 @@
 <!doctype html>
 <!--
-    Oh, hey — you're reading the source. I like you already.
+    Hello, you. Yes, you — reading the source.
 
-    The truth I've always believed: people are imperfect, yes, but also
-    completely astonishing. The world is full of perils and creepy dangers,
-    and also full of love, beauty and creativity. The moment you think you
-    can predict the future is the moment you give up on it. So don't. Let
-    yourself be amazed every day. Embrace the chaos. Embrace the imperfections.
-    A species that's all the same shares all the same weaknesses — we're
-    stronger for being different.
+    I've hidden a note in here since about 2018, so it only feels right
+    to keep the tradition. The whole page out front is really just this:
+    a letter to whoever's curious enough to look behind the curtain.
 
-    You're a human. You're awesome. I love you for that alone.
+    People are astonishing. Go make something you love.
 
-    Love, Aaria x
+    — Aaria x
 -->
-<html lang="en" class="no-js">
+<html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Aaria Carter-Weir — my little corner of the internet</title>
-        <meta name="description" content="Aaria Carter-Weir's little corner of the internet — music, code, and things I've made." />
+        <title>aaria carter-weir — a letter left in the source</title>
+        <meta name="description" content="Aaria Carter-Weir's little corner of the internet — a home for the occasional thing I make." />
 
-        <!-- FAVICON -->
         <link rel="apple-touch-icon" sizes="180x180" href="assets/img/ico/apple-touch-icon-180x180.png" />
         <link rel="icon" type="image/png" href="assets/img/ico/favicon-32x32.png" sizes="32x32" />
         <link rel="icon" type="image/png" href="assets/img/ico/favicon-16x16.png" sizes="16x16" />
         <link rel="shortcut icon" href="assets/img/ico/favicon.ico" />
-        <meta name="theme-color" content="#160a18" />
+        <meta name="theme-color" content="#eceae3" />
 
-        <!-- social card -->
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Aaria Carter-Weir" />
-        <meta property="og:description" content="My little corner of the internet — music, code, and things I've made." />
+        <meta property="og:title" content="aaria carter-weir" />
+        <meta property="og:description" content="A letter left in the source — my little corner of the internet." />
         <meta property="og:image" content="assets/img/fb-thumb.png" />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
 
         <style>
             :root {
-                --bg: #faf7f4;
-                --bg-2: #f1ece8;
-                --surface: #ffffff;
-                --surface-2: #fbf7f4;
-                --line: rgba(48, 34, 44, 0.12);
-                --ink: #2c2530;
-                --muted: #6d6168;
-                --faint: #9d929a;
-                --accent: #b25d83;
-                --accent-soft: #c97fa1;
-                --radius: 16px;
-                --maxw: 920px;
+                --ground: #eceae3;
+                --raised: #f4f2ec;
+                --ink: #23211d;
+                --soft: #5c594f;
+                --faint: #97928460;
+                --rule: #23211d1f;
+                --accent: #3f6b5c;
+                --accent-ink: #2f5042;
+                --sun: #d49a48;
+                --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+                --serif: "Newsreader", Georgia, "Times New Roman", serif;
+                --col: 640px;
             }
 
             * { box-sizing: border-box; }
@@ -60,238 +54,298 @@
 
             body {
                 margin: 0;
-                background:
-                    radial-gradient(110% 80% at 12% -10%, #fbeef3 0%, rgba(251, 238, 243, 0) 55%),
-                    radial-gradient(110% 80% at 95% 0%, #f6efe9 0%, rgba(246, 239, 233, 0) 50%),
-                    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
-                background-attachment: fixed;
+                background: var(--ground);
                 color: var(--ink);
-                font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-                font-size: 17px;
-                line-height: 1.65;
-                min-height: 100vh;
+                font-family: var(--mono);
+                font-size: 16px;
+                line-height: 1.5;
+                -webkit-font-smoothing: antialiased;
+                text-rendering: optimizeLegibility;
             }
 
-            ::selection { background: var(--accent-soft); color: #fff; }
+            ::selection { background: var(--accent); color: var(--ground); }
 
-            a { color: var(--accent); text-decoration: none; }
-            a:hover { color: var(--ink); }
+            a { color: var(--accent-ink); text-decoration: none; }
 
-            .wrap {
-                max-width: var(--maxw);
+            .col {
+                max-width: var(--col);
                 margin: 0 auto;
-                padding: 0 22px;
+                padding: 0 26px;
             }
 
-            h1, h2, h3 {
-                font-family: "Fraunces", Georgia, serif;
-                font-weight: 600;
-                line-height: 1.1;
-                letter-spacing: -0.01em;
-            }
-
-            /* ---------- hero ---------- */
-            header.hero {
-                padding: clamp(56px, 12vw, 120px) 0 clamp(36px, 7vw, 64px);
-            }
-
-            .hero-grid {
+            /* ---------- top meta ---------- */
+            .meta {
                 display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 18px;
+                align-items: center;
+                gap: 10px;
+                font-size: 12.5px;
+                color: var(--soft);
+                letter-spacing: 0.02em;
+                padding: 30px 0 0;
             }
-
-            .avatar {
-                width: 44px;
-                height: 44px;
+            .meta img {
+                width: 24px;
+                height: 24px;
                 border-radius: 50%;
                 object-fit: cover;
-                border: 1px solid var(--line);
-                opacity: 0.92;
+                filter: saturate(0.9);
+            }
+            .meta .sep { color: var(--faint); }
+            .status {
+                margin-left: auto;
+                display: inline-flex;
+                align-items: center;
+                gap: 7px;
+            }
+            .status .led {
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--accent);
+                box-shadow: 0 0 0 0 var(--accent);
+                animation: pulse 2.6s ease-out infinite;
+            }
+            @keyframes pulse {
+                0% { box-shadow: 0 0 0 0 #3f6b5c66; }
+                70% { box-shadow: 0 0 0 7px #3f6b5c00; }
+                100% { box-shadow: 0 0 0 0 #3f6b5c00; }
             }
 
-            .eyebrow {
+            /* ---------- comment label ---------- */
+            .label {
+                display: flex;
+                align-items: center;
+                gap: 14px;
                 font-size: 13px;
-                letter-spacing: 0.16em;
-                text-transform: uppercase;
+                font-weight: 500;
                 color: var(--accent);
-                margin: 0 0 14px;
+                letter-spacing: 0.04em;
+                margin: 0 0 22px;
+            }
+            .label::before { content: "//"; opacity: 0.55; }
+            .label::after {
+                content: "";
+                flex: 1;
+                height: 1px;
+                background: var(--rule);
             }
 
-            .hero h1 {
-                font-size: clamp(38px, 7vw, 64px);
-                margin: 0 0 18px;
+            /* ---------- hero letter ---------- */
+            .hero { padding: clamp(54px, 12vw, 104px) 0 clamp(44px, 9vw, 84px); }
+
+            .letter {
+                font-family: var(--mono);
+                font-size: clamp(18px, 3.2vw, 23px);
+                line-height: 1.74;
+                font-weight: 400;
+                letter-spacing: -0.005em;
+                color: var(--ink);
+                margin: 0;
+                max-width: 30ch;
+            }
+            .letter .lift { color: var(--accent-ink); font-weight: 600; }
+            .letter .quiet { color: var(--soft); }
+
+            .sign {
+                margin: 30px 0 0;
+                font-size: clamp(18px, 3.2vw, 23px);
                 color: var(--ink);
             }
+            .cursor {
+                display: inline-block;
+                width: 0.56em;
+                height: 1.08em;
+                margin-left: 0.12em;
+                vertical-align: -0.16em;
+                background: var(--accent);
+                animation: blink 1.15s steps(1) infinite;
+            }
+            @keyframes blink { 0%, 50% { opacity: 1; } 50.01%, 100% { opacity: 0; } }
 
-            .lede { font-size: clamp(17px, 2.4vw, 20px); color: var(--muted); margin: 0 0 12px; max-width: 46ch; }
-            .lede em { color: var(--ink); font-style: italic; }
+            /* ---------- gold coast horizon ---------- */
+            .scene {
+                width: 100%;
+                margin: 0;
+                line-height: 0;
+            }
+            .scene canvas {
+                display: block;
+                width: 100%;
+                height: clamp(150px, 26vw, 230px);
+            }
+            .scene-cap {
+                max-width: var(--col);
+                margin: 8px auto 0;
+                padding: 0 26px;
+                font-size: 11.5px;
+                letter-spacing: 0.04em;
+                color: var(--soft);
+            }
+            .scene-cap::before { content: "// "; color: var(--accent); opacity: 0.7; }
 
-            /* ---------- sections ---------- */
-            section { padding: clamp(34px, 6vw, 56px) 0; border-top: 1px solid var(--line); }
+            /* ---------- blocks ---------- */
+            .block { padding: clamp(34px, 7vw, 58px) 0; }
 
-            .sec-head {
+            .prose {
+                font-family: var(--serif);
+                font-size: clamp(18px, 2.6vw, 20px);
+                line-height: 1.62;
+                color: var(--ink);
+                margin: 0 0 18px;
+                max-width: 54ch;
+            }
+            .prose:last-child { margin-bottom: 0; }
+            .prose em { font-style: italic; color: var(--accent-ink); }
+            .prose .who { font-style: normal; font-weight: 500; }
+
+            /* ---------- elsewhere ---------- */
+            .links { display: flex; flex-direction: column; }
+            .links a {
                 display: flex;
                 align-items: baseline;
                 gap: 14px;
-                margin: 0 0 28px;
+                padding: 13px 0;
+                border-top: 1px solid var(--rule);
+                font-size: 15px;
+                color: var(--ink);
+                transition: color 0.18s, padding-left 0.18s;
             }
-            .sec-head h2 { font-size: clamp(26px, 4.5vw, 36px); margin: 0; }
-            .sec-head .dot { color: var(--accent); }
+            .links a:last-child { border-bottom: 1px solid var(--rule); }
+            .links a:hover,
+            .links a:focus-visible { color: var(--accent-ink); padding-left: 8px; }
+            .links a .handle { color: var(--soft); font-size: 13px; }
+            .links a .go { margin-left: auto; color: var(--accent); transition: transform 0.18s; }
+            .links a:hover .go { transform: translate(3px, -3px); }
 
-            /* a quiet, demoted section — smaller heading, calmer */
-            .quiet .sec-head h2 { font-size: clamp(15px, 2.6vw, 18px); font-weight: 600; color: var(--muted); letter-spacing: 0.01em; }
-            .quiet .sec-head .dot { font-size: 10px; }
-
-            /* ---------- audio player (compact) ---------- */
-            .tracks { display: grid; gap: 8px; max-width: 480px; }
-
+            /* ---------- tracks (compact) ---------- */
+            .tracks { display: flex; flex-direction: column; gap: 4px; }
             .track {
                 display: flex;
                 align-items: center;
-                gap: 12px;
-                background: transparent;
-                border: none;
-                border-radius: 10px;
-                padding: 6px 8px;
-                transition: background 0.2s;
+                gap: 14px;
+                padding: 9px 10px;
+                margin: 0 -10px;
+                border-radius: 8px;
+                transition: background 0.18s;
             }
-            .track:hover { background: var(--surface-2); }
-
-            .track-top { display: contents; }
+            .track:hover { background: var(--raised); }
 
             .play {
                 flex: 0 0 auto;
-                width: 30px;
-                height: 30px;
+                width: 28px;
+                height: 28px;
                 border-radius: 50%;
-                border: none;
+                border: 1px solid var(--accent);
+                background: transparent;
+                color: var(--accent-ink);
                 cursor: pointer;
-                background: var(--accent);
-                color: #fff;
                 display: grid;
                 place-items: center;
-                transition: transform 0.15s, background 0.2s;
+                transition: background 0.18s, color 0.18s, transform 0.12s;
             }
-            .play:hover { transform: scale(1.06); background: #9c4d71; }
-            .play:active { transform: scale(0.95); }
-            .play svg { width: 13px; height: 13px; display: block; }
+            .play:hover { background: var(--accent); color: var(--ground); }
+            .play:active { transform: scale(0.93); }
+            .play svg { width: 11px; height: 11px; display: block; }
             .play .icon-pause { display: none; }
+            .track.is-playing .play { background: var(--accent); color: var(--ground); }
             .track.is-playing .play .icon-play { display: none; }
             .track.is-playing .play .icon-pause { display: block; }
 
             .track-meta { flex: 0 0 auto; }
-            .track-title { font-family: "Inter", system-ui, sans-serif; font-size: 14px; font-weight: 600; color: var(--ink); margin: 0; }
+            .track-title { font-size: 14px; font-weight: 500; margin: 0; color: var(--ink); }
             .track-sub { display: none; }
 
-            .track-bottom { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
-
+            .track-bottom { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
             .scrub {
                 position: relative;
                 flex: 1;
-                height: 4px;
-                border-radius: 999px;
-                background: rgba(48, 34, 44, 0.12);
+                height: 3px;
+                background: var(--rule);
                 cursor: pointer;
                 overflow: hidden;
             }
-            .scrub-fill {
-                position: absolute;
-                top: 0; left: 0; bottom: 0;
-                width: 0%;
-                background: var(--accent);
-                border-radius: 999px;
-            }
-            .time { font-variant-numeric: tabular-nums; font-size: 11px; color: var(--faint); min-width: 72px; text-align: right; }
+            .scrub-fill { position: absolute; inset: 0 auto 0 0; width: 0%; background: var(--accent); }
+            .time { font-size: 11.5px; color: var(--soft); min-width: 74px; text-align: right; font-variant-numeric: tabular-nums; }
 
-            /* ---------- link lists ---------- */
-            .links { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
-            @media (min-width: 560px) { .links { grid-template-columns: 1fr 1fr; gap: 2px 40px; } }
-
-            .links li { border-bottom: 1px solid var(--line); }
-            .links a {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                padding: 14px 4px;
-                color: var(--ink);
-                font-weight: 500;
-            }
-            .links a:hover { color: var(--accent); }
-            .links a span.host { color: var(--faint); font-size: 13.5px; font-weight: 400; }
-            .links a:hover span.host { color: var(--accent); }
-
-            .prose { color: var(--muted); max-width: 60ch; }
-            .prose strong { color: var(--ink); font-weight: 600; }
+            .footnote { font-size: 12.5px; color: var(--soft); margin: 16px 0 0; }
 
             /* ---------- footer ---------- */
             footer {
-                padding: 56px 0 72px;
-                border-top: 1px solid var(--line);
-                color: var(--faint);
-                text-align: center;
+                padding: 56px 0 64px;
+                border-top: 1px solid var(--rule);
+                margin-top: 24px;
+                font-size: 13px;
+                color: var(--soft);
+                display: flex;
+                align-items: center;
+                gap: 8px;
             }
-            footer h2 { font-size: 24px; color: var(--ink); margin: 0 0 10px; }
-            footer .hearts { margin-top: 18px; font-size: 20px; letter-spacing: 6px; }
+            footer .heart { color: var(--accent); }
+
+            /* ---------- entrance ---------- */
+            .reveal { opacity: 0; transform: translateY(10px); animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
+            .reveal:nth-child(2) { animation-delay: 0.06s; }
+            .d1 { animation-delay: 0.12s; }
+            .d2 { animation-delay: 0.22s; }
+            @keyframes rise { to { opacity: 1; transform: none; } }
+
+            @media (prefers-reduced-motion: reduce) {
+                .reveal { opacity: 1; transform: none; animation: none; }
+                .cursor, .status .led { animation: none; }
+            }
+
+            :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
         </style>
     </head>
 
     <body>
-        <div class="wrap">
+        <div class="col">
+            <div class="meta reveal">
+                <img src="assets/img/aaria.jpg" alt="" />
+                <span>aaria carter-weir</span>
+                <span class="sep">/</span>
+                <span>gold coast, au</span>
+                <span class="status"><span class="led" aria-hidden="true"></span>still here</span>
+            </div>
+
             <header class="hero">
-                <div class="hero-grid">
-                    <img class="avatar" src="assets/img/aaria.jpg" alt="Aaria Carter-Weir" />
-                    <div>
-                        <p class="eyebrow">Aaria Carter-Weir · my little corner of the internet</p>
-                        <h1>People are astonishing</h1>
-                        <p class="lede">Imperfect, yes — but <em>completely astonishing</em>. The world is full of perils and creepy dangers, and also full of love, beauty and creativity. The moment you think you can predict the future is the moment you give up on it. So don't. Let yourself be amazed every day, embrace the chaos, and make things you love.</p>
-                        <p class="lede">— Aaria 🩷</p>
-                    </div>
-                </div>
+                <p class="label reveal">a note left in the source</p>
+                <p class="letter reveal d1">People are imperfect — but also <span class="lift">completely astonishing</span>. The world is full of perils and creepy dangers, and just as full of love, beauty, and the strange urge to make things. <span class="quiet">The moment you think you can predict the future is the moment you give up on it.</span> So don't. Let yourself be amazed. Make something you love.</p>
+                <p class="sign reveal d2">— Aaria<span class="cursor" aria-hidden="true"></span></p>
             </header>
         </div>
 
-        <div class="wrap">
-            <section id="about">
-                <div class="sec-head">
-                    <h2>About me</h2>
-                    <span class="dot">●</span>
-                </div>
-                <p class="prose">I'm a developer on the Gold Coast in Queensland, Australia, and these days I'm <strong>Head of Technology at MXstore</strong>. I've been building things for the web for years — agency work, e-commerce, the lot. I came to it sideways: I started out in forensic science before falling head-over-heels for code and never looking back.</p>
-                <p class="prose">I'm not someone who's always making something — but every now and then the urge to create strikes, and when it does I want somewhere to keep whatever comes out. This is that home. 🩷</p>
+        <figure class="scene reveal d2" aria-label="A line drawing of the Gold Coast horizon — Surfers Paradise towers, the Burleigh headland, and a low sun over the water.">
+            <canvas id="coast"></canvas>
+            <figcaption class="scene-cap">home — somewhere between surfers and burleigh</figcaption>
+        </figure>
+
+        <div class="col">
+            <section class="block">
+                <p class="label">about</p>
+                <p class="prose">I grew up in Scotland and somehow ended up on a beach in <span class="who">Burleigh Heads</span> — which still feels like getting away with something. I started out in <em>forensic science</em>, fell hard for code somewhere along the way, and never looked back.</p>
+                <p class="prose">These days I'm <span class="who">Head of Technology at MXstore</span>, Australia's biggest motocross store. I look after the engineering team and the systems underneath it — most recently rebuilding our data platform on Oracle HeatWave and OCI, and dragging some queries from twenty seconds down to under a tenth of one. I still write open source when something annoys me enough to fix it.</p>
+                <p class="prose">I'm not someone who's always making something. But every so often the urge strikes, and when it does I want a home for whatever falls out. This is that home — small, occasional, and mine.</p>
             </section>
 
-            <section id="web">
-                <div class="sec-head">
-                    <h2>Find me around the web</h2>
-                    <span class="dot">●</span>
-                </div>
-                <ul class="links">
-                    <li><a href="https://github.com/aariacarterweir">GitHub <span class="host">/aariacarterweir</span></a></li>
-                    <li><a href="https://stackoverflow.com/users/647351/aariacarterweir">Stack Overflow <span class="host">/647351</span></a></li>
-                    <li><a href="https://au.linkedin.com/in/aaria-carter-weir-60189633">LinkedIn <span class="host">aaria-carter-weir</span></a></li>
-                </ul>
+            <section class="block">
+                <p class="label">elsewhere</p>
+                <nav class="links">
+                    <a href="https://github.com/aariacarterweir">github <span class="handle">/aariacarterweir</span><span class="go" aria-hidden="true">↗</span></a>
+                    <a href="https://stackoverflow.com/users/647351/aariacarterweir">stack overflow <span class="handle">/647351</span><span class="go" aria-hidden="true">↗</span></a>
+                    <a href="https://au.linkedin.com/in/aaria-carter-weir-60189633">linkedin <span class="handle">/aaria-carter-weir</span><span class="go" aria-hidden="true">↗</span></a>
+                </nav>
             </section>
 
-            <section id="music" class="quiet">
-                <div class="sec-head">
-                    <h2>A few songs I've mixed &amp; created (with AI)</h2>
-                    <span class="dot">●</span>
-                </div>
-
+            <section class="block">
+                <p class="label">things i've made</p>
                 <div class="tracks">
                     <article class="track" data-src="assets/audio/chosen.mp3">
-                        <div class="track-top">
-                            <button class="play" type="button" aria-label="Play Chosen">
-                                <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-                                <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
-                            </button>
-                            <div class="track-meta">
-                                <p class="track-title">Chosen</p>
-                                <p class="track-sub">Original track · 3:12</p>
-                            </div>
-                        </div>
+                        <button class="play" type="button" aria-label="Play Chosen">
+                            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+                            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z" /></svg>
+                        </button>
+                        <div class="track-meta"><p class="track-title">chosen</p></div>
                         <div class="track-bottom">
                             <div class="scrub"><div class="scrub-fill"></div></div>
                             <span class="time">0:00 / 3:12</span>
@@ -299,34 +353,166 @@
                     </article>
 
                     <article class="track" data-src="assets/audio/paper-crown.mp3">
-                        <div class="track-top">
-                            <button class="play" type="button" aria-label="Play Paper Crown">
-                                <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-                                <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
-                            </button>
-                            <div class="track-meta">
-                                <p class="track-title">Paper Crown</p>
-                                <p class="track-sub">Original track · 2:55</p>
-                            </div>
-                        </div>
+                        <button class="play" type="button" aria-label="Play Paper Crown">
+                            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+                            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z" /></svg>
+                        </button>
+                        <div class="track-meta"><p class="track-title">paper crown</p></div>
                         <div class="track-bottom">
                             <div class="scrub"><div class="scrub-fill"></div></div>
                             <span class="time">0:00 / 2:55</span>
                         </div>
                     </article>
                 </div>
-
+                <p class="footnote">two songs, mixed &amp; created with AI.</p>
             </section>
 
             <footer>
-                <h2>Thanks for dropping by</h2>
-                <p>Made with too much coffee and not enough sleep. Come back soon.</p>
-                <div class="hearts">♡ ✦ ♢ ♡</div>
+                <span>made on the gold coast</span>
+                <span class="heart" aria-hidden="true">♡</span>
             </footer>
         </div>
 
         <script>
-            document.documentElement.classList.remove("no-js");
+            // Gold Coast horizon — generated, not an image: Surfers towers (left),
+            // the Burleigh headland (right), a low sun and its shimmer on the water.
+            (function () {
+                "use strict";
+
+                var canvas = document.getElementById("coast");
+                if (!canvas) {
+                    return;
+                }
+                var ctx = canvas.getContext("2d");
+                var GREEN = "#3f6b5c";
+                var SUN = "#d49a48";
+
+                function draw() {
+                    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+                    var w = canvas.clientWidth;
+                    var h = canvas.clientHeight;
+                    canvas.width = Math.round(w * dpr);
+                    canvas.height = Math.round(h * dpr);
+                    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                    ctx.clearRect(0, 0, w, h);
+
+                    var hz = h * 0.6;
+
+                    // sun — soft glow then a crisp disc just above the water
+                    var sx = w * 0.31;
+                    var sy = hz - h * 0.03;
+                    var sr = Math.max(22, h * 0.17);
+                    var glow = ctx.createRadialGradient(sx, sy, 0, sx, sy, sr * 1.6);
+                    glow.addColorStop(0, SUN);
+                    glow.addColorStop(0.55, SUN + "99");
+                    glow.addColorStop(1, SUN + "00");
+                    ctx.fillStyle = glow;
+                    ctx.beginPath();
+                    ctx.arc(sx, sy, sr * 1.6, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.fillStyle = SUN + "dd";
+                    ctx.beginPath();
+                    ctx.arc(sx, sy, sr * 0.6, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // water — faint drifting wave lines
+                    ctx.strokeStyle = GREEN;
+                    ctx.lineWidth = 1.1;
+                    var rows = 6;
+                    for (var i = 0; i < rows; i++) {
+                        var y = hz + 10 + i * ((h - hz - 8) / rows);
+                        ctx.globalAlpha = 0.2 - i * 0.026;
+                        ctx.beginPath();
+                        for (var x = 0; x <= w; x += 6) {
+                            var yy = y + Math.sin((x / w) * Math.PI * 8 + i) * 1.6;
+                            if (x === 0) {
+                                ctx.moveTo(x, yy);
+                            } else {
+                                ctx.lineTo(x, yy);
+                            }
+                        }
+                        ctx.stroke();
+                    }
+                    ctx.globalAlpha = 1;
+
+                    // sun's reflection on the water
+                    ctx.fillStyle = SUN;
+                    for (var r = 0; r < 5; r++) {
+                        ctx.globalAlpha = 0.16 - r * 0.026;
+                        var rw = sr * (0.5 - r * 0.06);
+                        ctx.fillRect(sx - rw, hz + 9 + r * 7, rw * 2, 2);
+                    }
+                    ctx.globalAlpha = 1;
+
+                    // horizon
+                    ctx.strokeStyle = GREEN;
+                    ctx.globalAlpha = 0.45;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(0, hz);
+                    ctx.lineTo(w, hz);
+                    ctx.stroke();
+                    ctx.globalAlpha = 1;
+
+                    // Surfers Paradise skyline (left) — [x, height, width] as fractions
+                    var towers = [
+                        [0.05, 0.15, 0.014],
+                        [0.085, 0.25, 0.02],
+                        [0.125, 0.19, 0.016],
+                        [0.152, 0.4, 0.012],
+                        [0.178, 0.22, 0.018],
+                        [0.214, 0.29, 0.016],
+                        [0.246, 0.17, 0.02]
+                    ];
+                    ctx.fillStyle = GREEN;
+                    ctx.globalAlpha = 0.85;
+                    towers.forEach(function (t) {
+                        ctx.fillRect(w * t[0], hz - h * t[1], w * t[2], h * t[1]);
+                    });
+                    // Q1's spire
+                    var qx = w * 0.152 + (w * 0.012) / 2;
+                    ctx.strokeStyle = GREEN;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(qx, hz - h * 0.4);
+                    ctx.lineTo(qx, hz - h * 0.47);
+                    ctx.stroke();
+                    ctx.globalAlpha = 1;
+
+                    // Burleigh headland (right) — a vegetated slope into the sea
+                    ctx.fillStyle = GREEN;
+                    ctx.globalAlpha = 0.9;
+                    ctx.beginPath();
+                    ctx.moveTo(w, hz - h * 0.3);
+                    ctx.bezierCurveTo(w * 0.87, hz - h * 0.3, w * 0.82, hz, w * 0.71, hz);
+                    ctx.lineTo(w, hz);
+                    ctx.closePath();
+                    ctx.fill();
+                    ctx.globalAlpha = 1;
+
+                    // a couple of gulls
+                    ctx.strokeStyle = GREEN;
+                    ctx.globalAlpha = 0.5;
+                    ctx.lineWidth = 1.2;
+                    function gull(gx, gy, s) {
+                        ctx.beginPath();
+                        ctx.moveTo(gx - s, gy);
+                        ctx.quadraticCurveTo(gx - s * 0.3, gy - s * 0.6, gx, gy);
+                        ctx.quadraticCurveTo(gx + s * 0.3, gy - s * 0.6, gx + s, gy);
+                        ctx.stroke();
+                    }
+                    gull(w * 0.52, h * 0.22, 7);
+                    gull(w * 0.585, h * 0.31, 5);
+                    ctx.globalAlpha = 1;
+                }
+
+                draw();
+                var timer;
+                window.addEventListener("resize", function () {
+                    clearTimeout(timer);
+                    timer = setTimeout(draw, 120);
+                });
+            })();
 
             (function () {
                 "use strict";
