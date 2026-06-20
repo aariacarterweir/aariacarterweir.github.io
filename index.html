@@ -40,18 +40,17 @@
 
         <style>
             :root {
-                --bg: #160a18;
-                --bg-2: #0c060e;
-                --surface: rgba(255, 255, 255, 0.04);
-                --surface-2: rgba(255, 255, 255, 0.07);
-                --line: rgba(255, 255, 255, 0.1);
-                --ink: #f6ecf2;
-                --muted: #c3a8bd;
-                --faint: #8f7689;
-                --magenta: #ff5fae;
-                --magenta-soft: #ff8fc6;
-                --gold: #ffc27a;
-                --radius: 18px;
+                --bg: #faf7f4;
+                --bg-2: #f1ece8;
+                --surface: #ffffff;
+                --surface-2: #fbf7f4;
+                --line: rgba(48, 34, 44, 0.12);
+                --ink: #2c2530;
+                --muted: #6d6168;
+                --faint: #9d929a;
+                --accent: #b25d83;
+                --accent-soft: #c97fa1;
+                --radius: 16px;
                 --maxw: 920px;
             }
 
@@ -62,8 +61,8 @@
             body {
                 margin: 0;
                 background:
-                    radial-gradient(120% 90% at 15% -10%, #3a173b 0%, rgba(58, 23, 59, 0) 55%),
-                    radial-gradient(120% 90% at 95% 0%, #2a1030 0%, rgba(42, 16, 48, 0) 50%),
+                    radial-gradient(110% 80% at 12% -10%, #fbeef3 0%, rgba(251, 238, 243, 0) 55%),
+                    radial-gradient(110% 80% at 95% 0%, #f6efe9 0%, rgba(246, 239, 233, 0) 50%),
                     linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
                 background-attachment: fixed;
                 color: var(--ink);
@@ -73,9 +72,9 @@
                 min-height: 100vh;
             }
 
-            ::selection { background: var(--magenta); color: #1a0612; }
+            ::selection { background: var(--accent-soft); color: #fff; }
 
-            a { color: var(--magenta-soft); text-decoration: none; }
+            a { color: var(--accent); text-decoration: none; }
             a:hover { color: var(--ink); }
 
             .wrap {
@@ -97,41 +96,33 @@
             }
 
             .hero-grid {
-                display: grid;
-                grid-template-columns: 1fr;
-                gap: 34px;
-                align-items: center;
-            }
-
-            @media (min-width: 720px) {
-                .hero-grid { grid-template-columns: 200px 1fr; gap: 48px; }
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 18px;
             }
 
             .avatar {
-                width: 150px;
-                height: 150px;
+                width: 44px;
+                height: 44px;
                 border-radius: 50%;
                 object-fit: cover;
-                border: 2px solid var(--line);
-                box-shadow: 0 0 0 6px rgba(255, 95, 174, 0.08), 0 24px 60px rgba(0, 0, 0, 0.5);
+                border: 1px solid var(--line);
+                opacity: 0.92;
             }
-            @media (min-width: 720px) { .avatar { width: 200px; height: 200px; } }
 
             .eyebrow {
                 font-size: 13px;
-                letter-spacing: 0.18em;
+                letter-spacing: 0.16em;
                 text-transform: uppercase;
-                color: var(--gold);
+                color: var(--accent);
                 margin: 0 0 14px;
             }
 
             .hero h1 {
-                font-size: clamp(40px, 8vw, 72px);
+                font-size: clamp(38px, 7vw, 64px);
                 margin: 0 0 18px;
-                background: linear-gradient(180deg, #fff 0%, var(--magenta-soft) 130%);
-                -webkit-background-clip: text;
-                background-clip: text;
-                color: transparent;
+                color: var(--ink);
             }
 
             .lede { font-size: clamp(17px, 2.4vw, 20px); color: var(--muted); margin: 0 0 12px; max-width: 46ch; }
@@ -147,56 +138,61 @@
                 margin: 0 0 28px;
             }
             .sec-head h2 { font-size: clamp(26px, 4.5vw, 36px); margin: 0; }
-            .sec-head .dot { color: var(--magenta); }
+            .sec-head .dot { color: var(--accent); }
 
-            /* ---------- audio player ---------- */
-            .tracks { display: grid; gap: 18px; }
+            /* a quiet, demoted section — smaller heading, calmer */
+            .quiet .sec-head h2 { font-size: clamp(15px, 2.6vw, 18px); font-weight: 600; color: var(--muted); letter-spacing: 0.01em; }
+            .quiet .sec-head .dot { font-size: 10px; }
+
+            /* ---------- audio player (compact) ---------- */
+            .tracks { display: grid; gap: 8px; max-width: 480px; }
 
             .track {
-                background: var(--surface);
-                border: 1px solid var(--line);
-                border-radius: var(--radius);
-                padding: 22px 22px 20px;
-                transition: border-color 0.25s, background 0.25s, transform 0.25s;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                background: transparent;
+                border: none;
+                border-radius: 10px;
+                padding: 6px 8px;
+                transition: background 0.2s;
             }
-            .track:hover { border-color: rgba(255, 95, 174, 0.35); background: var(--surface-2); }
-            .track.is-playing { border-color: rgba(255, 95, 174, 0.6); box-shadow: 0 0 40px rgba(255, 95, 174, 0.1); }
+            .track:hover { background: var(--surface-2); }
 
-            .track-top { display: flex; align-items: center; gap: 18px; }
+            .track-top { display: contents; }
 
             .play {
                 flex: 0 0 auto;
-                width: 56px;
-                height: 56px;
+                width: 30px;
+                height: 30px;
                 border-radius: 50%;
                 border: none;
                 cursor: pointer;
-                background: linear-gradient(135deg, var(--magenta), #c63b8f);
+                background: var(--accent);
                 color: #fff;
                 display: grid;
                 place-items: center;
-                box-shadow: 0 8px 24px rgba(255, 95, 174, 0.35);
-                transition: transform 0.15s, box-shadow 0.25s;
+                transition: transform 0.15s, background 0.2s;
             }
-            .play:hover { transform: scale(1.06); }
-            .play:active { transform: scale(0.97); }
-            .play svg { width: 22px; height: 22px; display: block; }
+            .play:hover { transform: scale(1.06); background: #9c4d71; }
+            .play:active { transform: scale(0.95); }
+            .play svg { width: 13px; height: 13px; display: block; }
             .play .icon-pause { display: none; }
             .track.is-playing .play .icon-play { display: none; }
             .track.is-playing .play .icon-pause { display: block; }
 
-            .track-meta { min-width: 0; flex: 1; }
-            .track-title { font-family: "Fraunces", Georgia, serif; font-size: 22px; font-weight: 600; margin: 0; }
-            .track-sub { color: var(--faint); font-size: 14px; margin: 2px 0 0; }
+            .track-meta { flex: 0 0 auto; }
+            .track-title { font-family: "Inter", system-ui, sans-serif; font-size: 14px; font-weight: 600; color: var(--ink); margin: 0; }
+            .track-sub { display: none; }
 
-            .track-bottom { display: flex; align-items: center; gap: 14px; margin-top: 18px; }
+            .track-bottom { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
 
             .scrub {
                 position: relative;
                 flex: 1;
-                height: 8px;
+                height: 4px;
                 border-radius: 999px;
-                background: rgba(255, 255, 255, 0.09);
+                background: rgba(48, 34, 44, 0.12);
                 cursor: pointer;
                 overflow: hidden;
             }
@@ -204,12 +200,10 @@
                 position: absolute;
                 top: 0; left: 0; bottom: 0;
                 width: 0%;
-                background: linear-gradient(90deg, var(--gold), var(--magenta));
+                background: var(--accent);
                 border-radius: 999px;
             }
-            .time { font-variant-numeric: tabular-nums; font-size: 13px; color: var(--muted); min-width: 84px; text-align: right; }
-
-            .track-note { color: var(--muted); font-size: 14.5px; margin: 14px 0 0; }
+            .time { font-variant-numeric: tabular-nums; font-size: 11px; color: var(--faint); min-width: 72px; text-align: right; }
 
             /* ---------- link lists ---------- */
             .links { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
@@ -224,9 +218,9 @@
                 color: var(--ink);
                 font-weight: 500;
             }
-            .links a:hover { color: var(--magenta-soft); }
+            .links a:hover { color: var(--accent); }
             .links a span.host { color: var(--faint); font-size: 13.5px; font-weight: 400; }
-            .links a:hover span.host { color: var(--magenta-soft); }
+            .links a:hover span.host { color: var(--accent); }
 
             .prose { color: var(--muted); max-width: 60ch; }
             .prose strong { color: var(--ink); font-weight: 600; }
@@ -249,19 +243,40 @@
                 <div class="hero-grid">
                     <img class="avatar" src="assets/img/aaria.jpg" alt="Aaria Carter-Weir" />
                     <div>
-                        <p class="eyebrow">my little corner of the internet</p>
-                        <h1>Aaria Carter-Weir</h1>
-                        <p class="lede">Hi! I make things — <em>music, code, and the occasional bit of chaos</em>. This is where I keep the stuff I'm proud of.</p>
-                        <p class="lede">Lately that's been songs. Have a listen. 🎧</p>
+                        <p class="eyebrow">Aaria Carter-Weir · my little corner of the internet</p>
+                        <h1>People are astonishing</h1>
+                        <p class="lede">Imperfect, yes — but <em>completely astonishing</em>. The world is full of perils and creepy dangers, and also full of love, beauty and creativity. The moment you think you can predict the future is the moment you give up on it. So don't. Let yourself be amazed every day, embrace the chaos, and make things you love.</p>
+                        <p class="lede">— Aaria 🩷</p>
                     </div>
                 </div>
             </header>
         </div>
 
         <div class="wrap">
-            <section id="music">
+            <section id="about">
                 <div class="sec-head">
-                    <h2>Music I've made</h2>
+                    <h2>About me</h2>
+                    <span class="dot">●</span>
+                </div>
+                <p class="prose">I'm a developer on the Gold Coast in Queensland, Australia, and these days I'm <strong>Head of Technology at MXstore</strong>. I've been building things for the web for years — agency work, e-commerce, the lot. I came to it sideways: I started out in forensic science before falling head-over-heels for code and never looking back.</p>
+                <p class="prose">When I'm not at a keyboard, I'm usually making music. Some of it's below. 🩷</p>
+            </section>
+
+            <section id="web">
+                <div class="sec-head">
+                    <h2>Find me around the web</h2>
+                    <span class="dot">●</span>
+                </div>
+                <ul class="links">
+                    <li><a href="https://github.com/aariacarterweir">GitHub <span class="host">/aariacarterweir</span></a></li>
+                    <li><a href="https://stackoverflow.com/users/647351/aariacarterweir">Stack Overflow <span class="host">/647351</span></a></li>
+                    <li><a href="https://au.linkedin.com/in/aaria-carter-weir-60189633">LinkedIn <span class="host">aaria-carter-weir</span></a></li>
+                </ul>
+            </section>
+
+            <section id="music" class="quiet">
+                <div class="sec-head">
+                    <h2>A few songs I've mixed &amp; created (with AI)</h2>
                     <span class="dot">●</span>
                 </div>
 
@@ -301,26 +316,6 @@
                     </article>
                 </div>
 
-            </section>
-
-            <section id="web">
-                <div class="sec-head">
-                    <h2>Find me around the web</h2>
-                    <span class="dot">●</span>
-                </div>
-                <ul class="links">
-                    <li><a href="https://github.com/aariacarterweir">GitHub <span class="host">/aariacarterweir</span></a></li>
-                    <li><a href="https://stackoverflow.com/users/647351/aariacarterweir">Stack Overflow <span class="host">/647351</span></a></li>
-                    <li><a href="https://au.linkedin.com/pub/aaria-carter-weir/33/896/601/en">LinkedIn <span class="host">aaria-carter-weir</span></a></li>
-                </ul>
-            </section>
-
-            <section id="about">
-                <div class="sec-head">
-                    <h2>A little about me</h2>
-                    <span class="dot">●</span>
-                </div>
-                <p class="prose">People are imperfect, yes — but also <strong>completely astonishing</strong>. The world is full of perils and creepy dangers, and also full of love, beauty and creativity. The moment you think you can predict the future is the moment you give up on it. So don't. Let yourself be amazed every day, embrace the chaos, and make things you love.</p>
             </section>
 
             <footer>
