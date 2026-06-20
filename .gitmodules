@@ -1,6 +1,0 @@
-[submodule "view/bubbles-game"]
-	path = view/bubbles-game
-	url = https://aariacarterweir@bitbucket.org/aariacarterweir/bubbles-game.git
-[submodule "view/ipanema-holding"]
-	path = view/ipanema-holding
-	url = https://aariacarterweir@bitbucket.org/aariacarterweir/ipanema-holding.git
