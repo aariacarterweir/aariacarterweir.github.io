@@ -165,7 +165,7 @@
             /* ---------- gold coast horizon ---------- */
             .scene {
                 max-width: var(--col);
-                margin: 0 auto;
+                margin: 0 auto clamp(26px, 6vw, 56px);
                 padding: 0 26px;
                 line-height: 0;
             }
@@ -394,35 +394,79 @@
                     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
                     ctx.clearRect(0, 0, w, h);
 
-                    var hz = h * 0.6;
+                    var hz = Math.round(h * 0.62);
 
-                    // sun — soft glow then a crisp disc just above the water
-                    var sx = w * 0.31;
-                    var sy = hz - h * 0.03;
-                    var sr = Math.max(22, h * 0.17);
-                    var glow = ctx.createRadialGradient(sx, sy, 0, sx, sy, sr * 1.6);
-                    glow.addColorStop(0, SUN);
-                    glow.addColorStop(0.55, SUN + "99");
-                    glow.addColorStop(1, SUN + "00");
-                    ctx.fillStyle = glow;
+                    // sun — a clean flat disc in the open water, between skyline and headland
+                    var sx = w * 0.5;
+                    var sr = Math.max(16, Math.min(h * 0.13, 30));
+                    var sy = hz - sr * 0.45;
+                    ctx.fillStyle = SUN;
                     ctx.beginPath();
-                    ctx.arc(sx, sy, sr * 1.6, 0, Math.PI * 2);
-                    ctx.fill();
-                    ctx.fillStyle = SUN + "dd";
-                    ctx.beginPath();
-                    ctx.arc(sx, sy, sr * 0.6, 0, Math.PI * 2);
+                    ctx.arc(sx, sy, sr, 0, Math.PI * 2);
                     ctx.fill();
 
-                    // water — faint drifting wave lines
+                    // Surfers Paradise skyline (left) — [x, height, width] as fractions
+                    var towers = [
+                        [0.05, 0.13, 0.013],
+                        [0.078, 0.21, 0.017],
+                        [0.111, 0.16, 0.014],
+                        [0.135, 0.33, 0.011],
+                        [0.158, 0.19, 0.016],
+                        [0.188, 0.25, 0.014],
+                        [0.216, 0.15, 0.018]
+                    ];
+                    ctx.fillStyle = GREEN;
+                    towers.forEach(function (t) {
+                        ctx.fillRect(Math.round(w * t[0]), hz - h * t[1], Math.max(2, w * t[2]), h * t[1]);
+                    });
+                    // Q1's spire
+                    var qx = Math.round(w * 0.135) + 1;
                     ctx.strokeStyle = GREEN;
-                    ctx.lineWidth = 1.1;
-                    var rows = 6;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(qx, hz - h * 0.33);
+                    ctx.lineTo(qx, hz - h * 0.39);
+                    ctx.stroke();
+
+                    // Burleigh headland (right) — a smooth vegetated slope into the sea
+                    ctx.fillStyle = GREEN;
+                    ctx.beginPath();
+                    ctx.moveTo(w, hz - h * 0.26);
+                    ctx.bezierCurveTo(w * 0.88, hz - h * 0.26, w * 0.83, hz, w * 0.72, hz);
+                    ctx.lineTo(w, hz);
+                    ctx.closePath();
+                    ctx.fill();
+
+                    // horizon
+                    ctx.strokeStyle = GREEN;
+                    ctx.globalAlpha = 0.4;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(0, hz + 0.5);
+                    ctx.lineTo(w, hz + 0.5);
+                    ctx.stroke();
+                    ctx.globalAlpha = 1;
+
+                    // sun's reflection — a tidy column of broken segments below it
+                    ctx.fillStyle = SUN;
+                    for (var r = 0; r < 6; r++) {
+                        ctx.globalAlpha = 0.5 - r * 0.07;
+                        var rw = sr * (0.85 - r * 0.1);
+                        ctx.fillRect(sx - rw, hz + 6 + r * 6, rw * 2, 2);
+                    }
+                    ctx.globalAlpha = 1;
+
+                    // water — calm, evenly spaced wave lines fading down
+                    ctx.strokeStyle = GREEN;
+                    ctx.lineWidth = 1;
+                    var rows = 5;
+                    var span = h - hz - 14;
                     for (var i = 0; i < rows; i++) {
-                        var y = hz + 10 + i * ((h - hz - 8) / rows);
-                        ctx.globalAlpha = 0.2 - i * 0.026;
+                        var y = hz + 16 + i * (span / rows);
+                        ctx.globalAlpha = 0.16 - i * 0.025;
                         ctx.beginPath();
-                        for (var x = 0; x <= w; x += 6) {
-                            var yy = y + Math.sin((x / w) * Math.PI * 8 + i) * 1.6;
+                        for (var x = 0; x <= w; x += 8) {
+                            var yy = y + Math.sin((x / w) * Math.PI * 6 + i * 1.3) * 1.3;
                             if (x === 0) {
                                 ctx.moveTo(x, yy);
                             } else {
@@ -431,76 +475,6 @@
                         }
                         ctx.stroke();
                     }
-                    ctx.globalAlpha = 1;
-
-                    // sun's reflection on the water
-                    ctx.fillStyle = SUN;
-                    for (var r = 0; r < 5; r++) {
-                        ctx.globalAlpha = 0.16 - r * 0.026;
-                        var rw = sr * (0.5 - r * 0.06);
-                        ctx.fillRect(sx - rw, hz + 9 + r * 7, rw * 2, 2);
-                    }
-                    ctx.globalAlpha = 1;
-
-                    // horizon
-                    ctx.strokeStyle = GREEN;
-                    ctx.globalAlpha = 0.45;
-                    ctx.lineWidth = 1;
-                    ctx.beginPath();
-                    ctx.moveTo(0, hz);
-                    ctx.lineTo(w, hz);
-                    ctx.stroke();
-                    ctx.globalAlpha = 1;
-
-                    // Surfers Paradise skyline (left) — [x, height, width] as fractions
-                    var towers = [
-                        [0.05, 0.15, 0.014],
-                        [0.085, 0.25, 0.02],
-                        [0.125, 0.19, 0.016],
-                        [0.152, 0.4, 0.012],
-                        [0.178, 0.22, 0.018],
-                        [0.214, 0.29, 0.016],
-                        [0.246, 0.17, 0.02]
-                    ];
-                    ctx.fillStyle = GREEN;
-                    ctx.globalAlpha = 0.85;
-                    towers.forEach(function (t) {
-                        ctx.fillRect(w * t[0], hz - h * t[1], w * t[2], h * t[1]);
-                    });
-                    // Q1's spire
-                    var qx = w * 0.152 + (w * 0.012) / 2;
-                    ctx.strokeStyle = GREEN;
-                    ctx.lineWidth = 1;
-                    ctx.beginPath();
-                    ctx.moveTo(qx, hz - h * 0.4);
-                    ctx.lineTo(qx, hz - h * 0.47);
-                    ctx.stroke();
-                    ctx.globalAlpha = 1;
-
-                    // Burleigh headland (right) — a vegetated slope into the sea
-                    ctx.fillStyle = GREEN;
-                    ctx.globalAlpha = 0.9;
-                    ctx.beginPath();
-                    ctx.moveTo(w, hz - h * 0.3);
-                    ctx.bezierCurveTo(w * 0.87, hz - h * 0.3, w * 0.82, hz, w * 0.71, hz);
-                    ctx.lineTo(w, hz);
-                    ctx.closePath();
-                    ctx.fill();
-                    ctx.globalAlpha = 1;
-
-                    // a couple of gulls
-                    ctx.strokeStyle = GREEN;
-                    ctx.globalAlpha = 0.5;
-                    ctx.lineWidth = 1.2;
-                    function gull(gx, gy, s) {
-                        ctx.beginPath();
-                        ctx.moveTo(gx - s, gy);
-                        ctx.quadraticCurveTo(gx - s * 0.3, gy - s * 0.6, gx, gy);
-                        ctx.quadraticCurveTo(gx + s * 0.3, gy - s * 0.6, gx + s, gy);
-                        ctx.stroke();
-                    }
-                    gull(w * 0.52, h * 0.22, 7);
-                    gull(w * 0.585, h * 0.31, 5);
                     ctx.globalAlpha = 1;
                 }
 
